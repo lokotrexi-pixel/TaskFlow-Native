@@ -35,6 +35,50 @@ include '../includes/sidebar.php';
 
 ?>
 
+<style>
+html{
+    scroll-behavior:smooth;
+}
+
+main{
+    animation:fadePage .7s ease;
+}
+
+.page-header{
+    opacity:0;
+    transform:translateY(30px);
+    animation:fadeUp .7s ease forwards;
+    animation-delay:.1s;
+}
+
+.card{
+    opacity:0;
+    transform:translateY(30px);
+    animation:fadeUp .8s ease forwards;
+    transition:transform .35s ease, box-shadow .35s ease;
+}
+
+.card:hover{
+    transform:translateY(-8px);
+    box-shadow:0 20px 45px rgba(79,70,229,.18);
+}
+
+@keyframes fadeUp{
+    from{
+        opacity:0;
+        transform:translateY(30px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+@keyframes fadePage{
+    from{opacity:0;}
+    to{opacity:1;}
+}
+</style>
 
 <div class="flex-1 flex flex-col">
 
@@ -47,7 +91,7 @@ include '../includes/sidebar.php';
 
 
 
-<div class="flex flex-col md:flex-row md:items-center md:justify-between gap-5 mb-8">
+<div class="flex flex-col md:flex-row md:items-center md:justify-between gap-5 mb-8 page-header">
 
 
 
@@ -424,9 +468,11 @@ Create Task
 
 
 <script>
-
 lucide.createIcons();
 
+document.querySelectorAll('.card').forEach((card,index)=>{
+    card.style.animationDelay=(0.25+index*0.1)+"s";
+});
 </script>
 
 

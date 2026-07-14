@@ -120,6 +120,43 @@ include '../includes/sidebar.php';
 
 ?>
 
+<style>
+html{
+    scroll-behavior:smooth;
+}
+
+main{
+    animation:fadePage .6s ease;
+}
+
+.form-card{
+    opacity:0;
+    transform:translateY(40px) scale(.98);
+    animation:fadeUp .7s ease forwards;
+    animation-delay:.15s;
+}
+
+@keyframes fadePage{
+    from{
+        opacity:0;
+    }
+    to{
+        opacity:1;
+    }
+}
+
+@keyframes fadeUp{
+    from{
+        opacity:0;
+        transform:translateY(40px) scale(.98);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0) scale(1);
+    }
+}
+</style>
+
 
 <div class="flex-1 flex flex-col">
 
@@ -133,7 +170,7 @@ include '../includes/sidebar.php';
 <div class="max-w-3xl mx-auto">
 
 
-<div class="card p-8">
+<div class="card p-8 form-card">
 
 
 
