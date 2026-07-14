@@ -82,6 +82,40 @@ Login - TaskFlow
 
 <script src="https://cdn.tailwindcss.com"></script>
 
+<style>
+
+body{
+    animation:fadePage .6s ease;
+}
+
+.auth-card{
+    opacity:0;
+    transform:translateY(40px) scale(.97);
+    animation:fadeUp .8s ease forwards;
+    animation-delay:.15s;
+}
+
+@keyframes fadePage{
+    from{
+        opacity:0;
+    }
+    to{
+        opacity:1;
+    }
+}
+
+@keyframes fadeUp{
+    from{
+        opacity:0;
+        transform:translateY(40px) scale(.97);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0) scale(1);
+    }
+}
+
+</style>
 
 </head>
 
@@ -95,7 +129,7 @@ Login - TaskFlow
 
 
 
-<div class="bg-slate-900 border border-slate-800 rounded-3xl p-8 shadow-xl">
+<div class="bg-slate-900 border border-slate-800 rounded-3xl p-8 shadow-xl auth-card">
 
 
 

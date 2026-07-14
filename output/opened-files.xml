@@ -73,6 +73,402 @@ CREATE TABLE tasks (
 </Opened Files>
 <Opened Files>
 <File Name>
+auth\register.php
+</File Name>
+<File Content>
+<?php
+
+session_start();
+
+require '../config/database.php';
+
+
+$error = "";
+
+
+if(isset($_POST['register'])){
+
+
+    $name = $_POST['name'];
+
+    $email = $_POST['email'];
+
+    $password = $_POST['password'];
+
+
+
+    // cek email sudah ada atau belum
+
+    $check = mysqli_query($conn,
+
+        "SELECT * FROM users WHERE email='$email'"
+
+    );
+
+
+
+    if(mysqli_num_rows($check) > 0){
+
+
+        $error = "Email sudah terdaftar!";
+
+
+    }else{
+
+
+        $password_hash = password_hash(
+            $password,
+            PASSWORD_DEFAULT
+        );
+
+
+
+        $query = mysqli_query($conn,
+
+
+        "INSERT INTO users
+
+        (name,email,password)
+
+        VALUES
+
+        ('$name','$email','$password_hash')"
+
+
+        );
+
+
+
+        if($query){
+
+
+            header("Location: login.php");
+
+            exit;
+
+
+        }
+
+
+    }
+
+
+}
+
+
+?>
+
+
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+<title>
+Register - TaskFlow
+</title>
+
+
+<script src="https://cdn.tailwindcss.com"></script>
+
+<style>
+
+body{
+    animation:fadePage .6s ease;
+}
+
+.auth-card{
+    opacity:0;
+    transform:translateY(40px) scale(.97);
+    animation:fadeUp .8s ease forwards;
+    animation-delay:.15s;
+}
+
+@keyframes fadePage{
+    from{
+        opacity:0;
+    }
+    to{
+        opacity:1;
+    }
+}
+
+@keyframes fadeUp{
+    from{
+        opacity:0;
+        transform:translateY(40px) scale(.97);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0) scale(1);
+    }
+}
+
+</style>
+
+</head>
+
+
+
+<body class="bg-slate-950 text-white min-h-screen flex items-center justify-center">
+
+
+
+<div class="w-full max-w-md px-6">
+
+
+
+<div class="bg-slate-900 border border-slate-800 rounded-3xl p-8 shadow-xl auth-card">
+
+
+
+<div class="text-center mb-8">
+
+
+<h1 class="text-3xl font-bold">
+
+
+<span class="text-indigo-500">
+Task
+</span>Flow
+
+
+</h1>
+
+
+<p class="text-slate-400 mt-2">
+
+Create your TaskFlow account
+
+</p>
+
+
+</div>
+
+
+
+
+
+<?php if($error): ?>
+
+
+<div class="bg-red-500/10 border border-red-500/30 text-red-400 p-4 rounded-xl mb-5">
+
+
+<?= $error ?>
+
+
+</div>
+
+
+<?php endif; ?>
+
+
+
+
+
+
+
+<form method="POST">
+
+
+
+
+
+<div class="mb-4">
+
+
+<label class="text-sm text-slate-400">
+
+Name
+
+</label>
+
+
+<input
+
+type="text"
+
+name="name"
+
+required
+
+class="w-full mt-2 px-4 py-3 rounded-xl bg-slate-800 border border-slate-700 focus:outline-none focus:border-indigo-500"
+
+placeholder="Your name"
+
+
+>
+
+
+</div>
+
+
+
+
+
+
+<div class="mb-4">
+
+
+<label class="text-sm text-slate-400">
+
+Email
+
+</label>
+
+
+<input
+
+type="email"
+
+name="email"
+
+required
+
+class="w-full mt-2 px-4 py-3 rounded-xl bg-slate-800 border border-slate-700 focus:outline-none focus:border-indigo-500"
+
+placeholder="email@example.com"
+
+
+>
+
+
+</div>
+
+
+
+
+
+
+
+<div class="mb-6">
+
+
+<label class="text-sm text-slate-400">
+
+Password
+
+</label>
+
+
+<input
+
+type="password"
+
+name="password"
+
+required
+
+class="w-full mt-2 px-4 py-3 rounded-xl bg-slate-800 border border-slate-700 focus:outline-none focus:border-indigo-500"
+
+placeholder="••••••••"
+
+
+>
+
+
+</div>
+
+
+
+
+
+
+
+<button
+
+name="register"
+
+class="w-full py-3 rounded-xl bg-indigo-600 hover:bg-indigo-700 font-semibold transition"
+
+
+>
+
+Create Account
+
+</button>
+
+
+
+
+</form>
+
+
+
+
+
+
+
+<div class="text-center mt-6 text-slate-400">
+
+
+Sudah punya akun?
+
+
+<a
+
+href="login.php"
+
+class="text-indigo-400 hover:text-indigo-300 font-semibold"
+
+>
+
+Login
+
+</a>
+
+
+</div>
+
+
+
+
+
+<div class="text-center mt-4">
+
+
+<a
+
+href="../index.php"
+
+class="text-sm text-slate-500 hover:text-white"
+
+>
+
+← Kembali ke Landing Page
+
+</a>
+
+
+</div>
+
+
+
+
+
+
+</div>
+
+
+</div>
+
+
+
+</body>
+
+</html>
+</File Content>
+</Opened Files>
+<Opened Files>
+<File Name>
 project\create.php
 </File Name>
 <File Content>
@@ -1079,6 +1475,44 @@ include '../includes/sidebar.php';
 
 ?>
 
+<style>
+html{
+    scroll-behavior:smooth;
+}
+
+main{
+    animation:fadePage .6s ease;
+}
+
+.form-card{
+    opacity:0;
+    transform:translateY(40px) scale(.98);
+    animation:fadeUp .7s ease forwards;
+    animation-delay:.15s;
+}
+
+@keyframes fadePage{
+    from{
+        opacity:0;
+    }
+    to{
+        opacity:1;
+    }
+}
+
+@keyframes fadeUp{
+    from{
+        opacity:0;
+        transform:translateY(40px) scale(.98);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0) scale(1);
+    }
+}
+</style>
+
+
 <div class="flex-1 flex flex-col">
 
 <?php include '../includes/navbar.php'; ?>
@@ -1090,7 +1524,7 @@ include '../includes/sidebar.php';
 <div class="max-w-3xl mx-auto">
 
 
-<div class="card p-8">
+<div class="card p-8 form-card">
 
 
 <h1 class="text-3xl font-bold mb-2">
@@ -1794,6 +2228,149 @@ Cancel
 
 
 <?php include '../includes/footer.php'; ?>
+</File Content>
+</Opened Files>
+<Opened Files>
+<File Name>
+assets\css\style.css
+</File Name>
+<File Content>
+/* ===================================
+   TASKFLOW
+   Modern SaaS Dark Theme
+=================================== */
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+
+    margin:0;
+
+    font-family:'Inter',sans-serif;
+
+    background:#020617;
+
+    color:white;
+
+}
+
+/* Scrollbar */
+
+::-webkit-scrollbar{
+
+    width:8px;
+
+}
+
+::-webkit-scrollbar-track{
+
+    background:#0f172a;
+
+}
+
+::-webkit-scrollbar-thumb{
+
+    background:#334155;
+
+    border-radius:999px;
+
+}
+
+::-webkit-scrollbar-thumb:hover{
+
+    background:#475569;
+
+}
+
+/* Card */
+
+.card{
+
+    background:#1e293b;
+
+    border:1px solid #334155;
+
+    border-radius:18px;
+
+    transition:.3s;
+
+}
+
+.card:hover{
+
+    transform:translateY(-3px);
+
+    box-shadow:0 18px 35px rgba(0,0,0,.35);
+
+}
+
+/* Button */
+
+.btn{
+
+    transition:.25s;
+
+}
+
+.btn:hover{
+
+    transform:translateY(-2px);
+
+}
+
+/* Input */
+
+input,
+textarea,
+select{
+
+    transition:.25s;
+
+}
+
+input:focus,
+textarea:focus,
+select:focus{
+
+    box-shadow:0 0 0 3px rgba(79,70,229,.35);
+
+}
+
+/* Link */
+
+a{
+
+    transition:.25s;
+
+}
+
+/* Table */
+
+table{
+
+    border-collapse:collapse;
+
+}
+
+th{
+
+    font-weight:600;
+
+}
+
+tr{
+
+    transition:.2s;
+
+}
+
+tbody tr:hover{
+
+    background:rgba(255,255,255,.03);
+
+}
 </File Content>
 </Opened Files>
 <Opened Files>
@@ -3713,5 +4290,302 @@ $conn = mysqli_connect($host, $user, $password, $database);
 if (!$conn) {
     die("Koneksi database gagal!");
 }
+</File Content>
+</Opened Files>
+<Opened Files>
+<File Name>
+auth\login.php
+</File Name>
+<File Content>
+<?php
+
+session_start();
+
+require '../config/database.php';
+
+
+$error = "";
+
+
+if (isset($_POST['login'])) {
+
+
+    $email = $_POST['email'];
+    $password = $_POST['password'];
+
+
+    $query = mysqli_query($conn,
+
+        "SELECT * FROM users WHERE email='$email'"
+
+    );
+
+
+    $user = mysqli_fetch_assoc($query);
+
+
+
+    if ($user) {
+
+
+        if (password_verify($password, $user['password'])) {
+
+
+            $_SESSION['user_id'] = $user['id'];
+            $_SESSION['name'] = $user['name'];
+            $_SESSION['email'] = $user['email'];
+
+
+            header("Location: ../dashboard/index.php");
+            exit;
+
+
+        } else {
+
+
+            $error = "Password salah!";
+
+
+        }
+
+
+    } else {
+
+
+        $error = "Email tidak ditemukan!";
+
+
+    }
+
+}
+
+
+?>
+
+
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+<title>
+Login - TaskFlow
+</title>
+
+
+<script src="https://cdn.tailwindcss.com"></script>
+
+
+</head>
+
+
+
+<body class="bg-slate-950 text-white min-h-screen flex items-center justify-center">
+
+
+
+<div class="w-full max-w-md px-6">
+
+
+
+<div class="bg-slate-900 border border-slate-800 rounded-3xl p-8 shadow-xl">
+
+
+
+<div class="text-center mb-8">
+
+
+<h1 class="text-3xl font-bold">
+
+<span class="text-indigo-500">
+Task
+</span>Flow
+
+</h1>
+
+
+<p class="text-slate-400 mt-2">
+
+Login to manage your tasks
+
+</p>
+
+
+</div>
+
+
+
+
+
+<?php if($error): ?>
+
+
+<div class="bg-red-500/10 border border-red-500/30 text-red-400 p-4 rounded-xl mb-5">
+
+
+<?= $error ?>
+
+
+</div>
+
+
+<?php endif; ?>
+
+
+
+
+
+
+<form method="POST">
+
+
+
+<div class="mb-5">
+
+
+<label class="text-sm text-slate-400">
+
+Email
+
+</label>
+
+
+<input
+
+type="email"
+
+name="email"
+
+required
+
+class="w-full mt-2 px-4 py-3 rounded-xl bg-slate-800 border border-slate-700 focus:outline-none focus:border-indigo-500"
+
+placeholder="email@example.com"
+
+
+>
+
+
+</div>
+
+
+
+
+
+
+<div class="mb-6">
+
+
+<label class="text-sm text-slate-400">
+
+Password
+
+</label>
+
+
+<input
+
+type="password"
+
+name="password"
+
+required
+
+class="w-full mt-2 px-4 py-3 rounded-xl bg-slate-800 border border-slate-700 focus:outline-none focus:border-indigo-500"
+
+placeholder="••••••••"
+
+
+>
+
+
+</div>
+
+
+
+
+
+
+<button
+
+name="login"
+
+class="w-full py-3 rounded-xl bg-indigo-600 hover:bg-indigo-700 font-semibold transition"
+
+
+>
+
+Login
+
+</button>
+
+
+
+</form>
+
+
+
+
+
+<div class="text-center mt-6 text-slate-400">
+
+
+Belum punya akun?
+
+
+<a
+
+href="register.php"
+
+class="text-indigo-400 hover:text-indigo-300 font-semibold"
+
+>
+
+Register
+
+</a>
+
+
+</div>
+
+
+
+
+<div class="text-center mt-4">
+
+
+<a
+
+href="../index.php"
+
+class="text-sm text-slate-500 hover:text-white"
+
+>
+
+← Kembali ke Landing Page
+
+</a>
+
+
+</div>
+
+
+
+</div>
+
+
+</div>
+
+
+
+</body>
+
+</html>
 </File Content>
 </Opened Files>
