@@ -33,12 +33,12 @@ TaskFlow
 
 <!-- Tailwind -->
 
-<script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="../assets/css/tailwind.css">
 
 
 <script>
 
-tailwind.config = {
+window.tailwind=window.tailwind||{};tailwind.config = {
 
 theme: {
 
@@ -80,7 +80,7 @@ danger:'#ef4444'
 
 <!-- Lucide -->
 
-<script src="https://unpkg.com/lucide@latest"></script>
+<script src="../assets/js/lucide.min.js"></script>
 
 
 
@@ -102,7 +102,10 @@ scroll-behavior:smooth;
 
 body{
 
-animation:pageFade .5s ease;
+    animation:pageFade .3s ease;
+    -webkit-overflow-scrolling:touch;
+    scroll-behavior:smooth;
+    overflow-y:auto;
 
 }
 
@@ -129,12 +132,21 @@ opacity:1;
 
 
 
+.dashboard-card{
+    will-change:transform;
+}
+
+
 /* SIDEBAR */
 
 
+@media (min-width:1024px){
+
 .sidebar-animation{
 
-animation:sidebarShow .7s ease;
+animation:sidebarShow .4s ease;
+
+}
 
 }
 
@@ -173,7 +185,7 @@ transform:translateX(0);
 
 .nav-animation{
 
-animation:navbarShow .7s ease;
+animation:navbarShow .4s ease;
 
 }
 
@@ -215,35 +227,35 @@ transform:translateY(0);
 
 opacity:0;
 
-animation:menuShow .5s ease forwards;
+    animation:menuShow .35s ease forwards;
 
 }
 
 
 .menu-1{
 
-animation-delay:.1s;
+    animation-delay:.05s;
 
 }
 
 
 .menu-2{
 
-animation-delay:.2s;
+    animation-delay:.1s;
 
 }
 
 
 .menu-3{
 
-animation-delay:.3s;
+    animation-delay:.15s;
 
 }
 
 
 .menu-4{
 
-animation-delay:.4s;
+    animation-delay:.2s;
 
 }
 
@@ -378,7 +390,7 @@ transform:scale(1.05);
 </head>
 
 
-<body class="bg-background text-white font-[Inter]">
+<body class="bg-background text-white font-[Inter] overflow-x-hidden">
 
 
 <div class="flex min-h-screen">

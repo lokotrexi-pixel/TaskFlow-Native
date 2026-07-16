@@ -43,15 +43,21 @@ date('d')
 ?>
 
 
-<header class="h-20 bg-sidebar border-b border-bordercolor flex items-center justify-between px-8 nav-animation">
+<header class="min-h-20 bg-sidebar border-b border-bordercolor flex items-center justify-between gap-3 px-4 md:px-8 nav-animation">
 
 
     <!-- Left -->
 
-    <div>
+    <div class="flex items-center gap-3 min-w-0 flex-1">
 
 
-        <h1 class="text-3xl font-bold tracking-tight">
+        <button id="sidebarToggle" class="lg:hidden p-2 -ml-2 mr-1 rounded-lg hover:bg-card transition shrink-0" aria-label="Buka menu">
+            <i data-lucide="menu" class="w-6 h-6"></i>
+        </button>
+
+        <div>
+
+            <h1 class="text-xl sm:text-2xl md:text-3xl font-bold tracking-tight">
 
             Dashboard
 
@@ -59,7 +65,7 @@ date('d')
 
 
 
-        <p class="text-slate-400 text-sm mt-1">
+        <p class="text-slate-400 text-sm mt-1 break-words">
 
             Welcome back,
 
@@ -72,6 +78,8 @@ date('d')
         </p>
 
 
+        </div>
+
     </div>
 
 
@@ -80,7 +88,7 @@ date('d')
 
     <!-- Right -->
 
-    <div class="flex items-center gap-5">
+    <div class="flex items-center gap-5 shrink-0">
 
 
 
@@ -105,7 +113,7 @@ date('d')
 
 
 
-            <div>
+        <div class="min-w-0">
 
 
                 <p class="text-xs text-slate-400">

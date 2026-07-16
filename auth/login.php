@@ -80,18 +80,18 @@ Login - TaskFlow
 </title>
 
 
-<script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="../assets/css/tailwind.css">
 
 <style>
 
 body{
-    animation:fadePage .6s ease;
+    animation:fadePage .35s ease;
 }
 
 .auth-card{
     opacity:0;
     transform:translateY(40px) scale(.97);
-    animation:fadeUp .8s ease forwards;
+    animation:fadeUp .45s ease forwards;
     animation-delay:.15s;
 }
 

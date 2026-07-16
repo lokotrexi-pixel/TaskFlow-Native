@@ -1,4 +1,6 @@
-<aside class="w-72 bg-sidebar border-r border-bordercolor flex flex-col sidebar-animation">
+<div id="sidebarBackdrop" class="fixed inset-0 bg-black/50 z-40 hidden lg:hidden"></div>
+
+<aside id="sidebar" class="w-72 bg-sidebar border-r border-bordercolor flex flex-col sidebar-animation fixed inset-y-0 left-0 z-50 -translate-x-full overflow-y-auto transition-transform duration-300 lg:static lg:translate-x-0">
 
 
 <div class="h-20 px-6 flex items-center border-b border-bordercolor">
@@ -8,11 +10,11 @@
 <div class="w-11 h-11 rounded-xl bg-primary flex items-center justify-center shadow-lg">
 
 
-<span class="text-xl font-bold">
+            <i data-lucide="check-square" class="w-6 h-6 text-white"></i>
 
-T
 
-</span>
+
+
 
 
 </div>

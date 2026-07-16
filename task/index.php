@@ -41,20 +41,20 @@ html{
 }
 
 main{
-    animation:fadePage .7s ease;
+    animation:fadePage .35s ease;
 }
 
 .page-header{
     opacity:0;
     transform:translateY(30px);
-    animation:fadeUp .7s ease forwards;
+    animation:fadeUp .45s ease forwards;
     animation-delay:.1s;
 }
 
 .card{
     opacity:0;
     transform:translateY(30px);
-    animation:fadeUp .8s ease forwards;
+    animation:fadeUp .45s ease forwards;
     transition:transform .35s ease, box-shadow .35s ease;
 }
 
@@ -87,7 +87,7 @@ main{
 
 
 
-<main class="flex-1 p-8 bg-background">
+<main class="flex-1 p-4 sm:p-6 md:p-8 bg-background">
 
 
 
@@ -471,7 +471,7 @@ Create Task
 lucide.createIcons();
 
 document.querySelectorAll('.card').forEach((card,index)=>{
-    card.style.animationDelay=(0.25+index*0.1)+"s";
+    card.style.animationDelay=(0.08+index*0.06)+"s";
 });
 </script>
 

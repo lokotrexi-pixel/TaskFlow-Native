@@ -43,13 +43,13 @@ html{
 }
 
 main{
-    animation:fadePage .6s ease;
+    animation:fadePage .35s ease;
 }
 
 .form-card{
     opacity:0;
     transform:translateY(40px) scale(.98);
-    animation:fadeUp .7s ease forwards;
+    animation:fadeUp .45s ease forwards;
     animation-delay:.15s;
 }
 
@@ -78,7 +78,7 @@ main{
 
 <?php include '../includes/navbar.php'; ?>
 
-<main class="flex-1 p-8 bg-background">
+<main class="flex-1 p-4 sm:p-6 md:p-8 bg-background">
 
 <div class="max-w-3xl mx-auto">
 
@@ -184,7 +184,7 @@ Completed
 
 </div>
 
-<div class="flex gap-4">
+<div class="flex flex-col gap-3 sm:flex-row">
 
 <button
 name="submit"

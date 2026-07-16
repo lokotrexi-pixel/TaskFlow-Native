@@ -30,7 +30,7 @@ TaskFlow - Task Management
 </title>
 
 
-<script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="assets/css/tailwind.css">
 
 
 
@@ -47,7 +47,7 @@ html{
 
 .fade-up{
 
-    animation:fadeUp .8s ease forwards;
+    animation:fadeUp .45s ease forwards;
 
 }
 
@@ -132,7 +132,7 @@ html{
 
         opacity:.3;
 
-        transform:scale(1);
+
 
     }
 
@@ -141,7 +141,7 @@ html{
 
         opacity:.7;
 
-        transform:scale(1.2);
+
 
     }
 
@@ -201,13 +201,13 @@ html{
 
 
 
-<body class="bg-slate-950 text-white min-h-screen overflow-x-hidden">
+<body class="bg-slate-950 text-white relative min-h-screen overflow-x-hidden">
 
 
 
 
 
-<div class="absolute top-20 left-1/2 -translate-x-1/2 w-96 h-96 bg-indigo-600 blur-[120px] rounded-full glow">
+<div class="absolute top-20 left-1/2 -translate-x-1/2 w-[80vw] max-w-96 h-[80vw] max-h-96 bg-indigo-600 blur-[120px] rounded-full glow">
 
 </div>
 
@@ -219,7 +219,7 @@ html{
 <nav class="border-b border-slate-800 relative z-10">
 
 
-<div class="max-w-7xl mx-auto px-6 py-5 flex justify-between items-center">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 py-5 flex justify-between items-center">
 
 
 
@@ -243,7 +243,7 @@ Task
 
 href="auth/login.php"
 
-class="px-5 py-2 rounded-xl border border-slate-700 hover:bg-slate-800 transition">
+class="px-4 sm:px-5 py-2 text-sm sm:text-base rounded-xl border border-slate-700 hover:bg-slate-800 transition">
 
 Login
 
@@ -256,7 +256,7 @@ Login
 
 href="auth/register.php"
 
-class="px-5 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-700 transition">
+class="px-4 sm:px-5 py-2 text-sm sm:text-base rounded-xl bg-indigo-600 hover:bg-indigo-700 transition">
 
 Register
 
@@ -303,7 +303,7 @@ TASK MANAGEMENT PLATFORM
 
 
 
-<h1 class="text-5xl font-bold leading-tight">
+<h1 class="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight">
 
 
 Manage Your Work.
@@ -738,7 +738,7 @@ Nyaman digunakan desktop maupun mobile.
 
 
 
-<script src="https://unpkg.com/lucide@latest"></script>
+<script src="assets/js/lucide.min.js"></script>
 
 
 
@@ -783,10 +783,19 @@ function revealOnScroll(){
 
 
 
-window.addEventListener(
-    'scroll',
-    revealOnScroll
-);
+let _ticking=false;
+const _onScroll=function(){
+    if(_ticking) return;
+    _ticking=true;
+    requestAnimationFrame(()=>{
+        revealOnScroll();
+        _ticking=false;
+        if(document.querySelectorAll('.reveal:not(.active)').length===0){
+            window.removeEventListener('scroll', _onScroll);
+        }
+    });
+};
+window.addEventListener('scroll', _onScroll, {passive:true});
 
 
 

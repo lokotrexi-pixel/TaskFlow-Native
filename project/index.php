@@ -33,20 +33,20 @@ html{
 }
 
 main{
-    animation:fadePage .7s ease;
+    animation:fadePage .35s ease;
 }
 
 .page-header{
     opacity:0;
     transform:translateY(30px);
-    animation:fadeUp .7s ease forwards;
+    animation:fadeUp .45s ease forwards;
     animation-delay:.1s;
 }
 
 .card{
     opacity:0;
     transform:translateY(30px);
-    animation:fadeUp .8s ease forwards;
+    animation:fadeUp .45s ease forwards;
     transition:transform .35s ease, box-shadow .35s ease;
 }
 
@@ -76,9 +76,9 @@ main{
 
 <?php include '../includes/navbar.php'; ?>
 
-<main class="flex-1 p-8 bg-background">
+<main class="flex-1 p-4 sm:p-6 md:p-8 bg-background">
 
-    <div class="flex items-center justify-between mb-8 page-header">
+    <div class="flex flex-col gap-4 md:flex-row md:items-center md:justify-between mb-8 page-header">
 
         <div>
 
@@ -263,7 +263,7 @@ Create Project
 lucide.createIcons();
 
 document.querySelectorAll('.card').forEach((card,index)=>{
-    card.style.animationDelay=(0.25+index*0.1)+"s";
+    card.style.animationDelay=(0.08+index*0.06)+"s";
 });
 </script>
 

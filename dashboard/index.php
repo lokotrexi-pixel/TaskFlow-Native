@@ -110,7 +110,7 @@ html{
 
     opacity:0;
 
-    animation:fadeUp .8s ease forwards;
+    animation:fadeUp .45s ease forwards;
 
 }
 
@@ -118,28 +118,28 @@ html{
 
 .delay-1{
 
-    animation-delay:.15s;
+    animation-delay:.05s;
 
 }
 
 
 .delay-2{
 
-    animation-delay:.3s;
+    animation-delay:.1s;
 
 }
 
 
 .delay-3{
 
-    animation-delay:.45s;
+    animation-delay:.15s;
 
 }
 
 
 .delay-4{
 
-    animation-delay:.6s;
+    animation-delay:.2s;
 
 }
 
@@ -195,6 +195,7 @@ to{
 
 .progress-bar{
 
+    transform-origin:left center;
     animation:progressAnimation 1.5s ease forwards;
 
 }
@@ -206,7 +207,13 @@ to{
 
 from{
 
-    width:0;
+    transform:scaleX(0);
+
+}
+
+to{
+
+    transform:scaleX(1);
 
 }
 
@@ -230,7 +237,7 @@ from{
 
 
 
-<main class="flex-1 p-8 bg-background">
+<main class="flex-1 p-4 sm:p-6 md:p-8 bg-background">
 
 
 
@@ -239,7 +246,7 @@ from{
 <div class="mb-10 dashboard-show">
 
 
-<h1 class="text-4xl font-bold">
+<h1 class="text-2xl sm:text-3xl md:text-4xl font-bold break-words">
 
 
 Welcome Back,
